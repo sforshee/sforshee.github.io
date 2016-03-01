@@ -8,6 +8,7 @@ tags:
 modified_time: '2011-12-16T10:00:08.048-06:00'
 blogger_id: tag:blogger.com,1999:blog-8501269611012488187.post-6568643671275466181
 blogger_orig_url: http://blog.forshee.me/2011/12/using-ftrace-to-identify-process.html
+redirect_from: "/2011/12/using-ftrace-to-identify-process.html"
 ---
 
 Sometimes it's useful to know the context from which a kernel function is being called. For instance, I recently wanted to know what process was responsible for adjusting the keyboard backlight in response to hotkey presses on the MacBook Air I've been working with. Based on the way the LED class driver works, I knew that the callback into the hardware-specific driver (in this case applesmc_brightness_set() from drivers/hwmon/applesmc.c) would be called from the context of the process performing the backlight adjustment.
