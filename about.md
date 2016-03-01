@@ -11,4 +11,5 @@ I am a software engineer working on the Linux kernel in [Ubuntu](http://www.ubun
 - [Github](https://github.com/sforshee)
 - [Launchpad](https://launchpad.net/~sforshee)
 - [LinkedIn](http://www.linkedin.com/in/sforshee)
+- [Email](mailto:{{ site.email}})
 - Freenode: sforshee
