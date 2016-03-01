@@ -9,20 +9,167 @@ One of the most important functions of an edge router is to protect the networks
 
 # ACL vs. Zone Based Firewall
 
-The default firewall setup on the ERL (and the only one supported via the web client) defines rules as sets of ACLs on a per-interface basis. The ERL supports another method of defining rules, using zones to create a zone-based firewall. For a pretty thorough comparison of ACL versus zone-based firewall, I suggest going here. The basic idea behind a zone-based firewall is as follows:
-You define zones for your network. A common set of zones might be WAN, LAN, and DMZ.
-You assign one or more interfaces to each zone.
-You set up rules which match based on source and destination zones.
+The default firewall setup on the ERL (and the only one supported via the web client) defines rules as sets of ACLs on a per-interface basis. The ERL supports another method of defining rules, using zones to create a zone-based firewall. For a pretty thorough comparison of ACL versus zone-based firewall, I suggest going [here](https://www.nnbfn.net/2011/06/per-interface-vs-zone-based-firewall/). The basic idea behind a zone-based firewall is as follows:
+
+- You define zones for your network. A common set of zones might be WAN, LAN, and DMZ.
+- You assign one or more interfaces to each zone.
+- You set up rules which match based on source and destination zones.
+
 While an ACL firewall can be easier to set up for simple networks such as mine, a zone-based firewall is conceptually simpler (in my opinion at least) and less susceptible to the sorts of mistakes that can open up your network to the outside. Thus I opted for a zone-based firewall for my network.
 
 # Setting Up the Zone Based Firewall
 
-I won't go into a lot of detail here, so I suggest going [here](https://help.ubnt.com/hc/en-us/articles/204952154-EdgeMAX-Zone-Policy-CLI-Example) for a more detailed explanation. The link to the example configuration file in that article is broken however, luckily someone was kind enough to post a copy [here](https://gist.github.com/cimnine/9b9dc854a43702f953ea).
+The approach I've taken is based on [this article](https://help.ubnt.com/hc/en-us/articles/204952154-EdgeMAX-Zone-Policy-CLI-Example). I recommend reading this before continuing. The link to the example configuration file in that article is broken however, luckily someone was kind enough to post a copy [here](https://gist.github.com/cimnine/9b9dc854a43702f953ea).
 
-My network currently has three zones, WAN, home LAN, and office LAN, which I've creatively named _wan_, _homelan_, and _officelan_. There's also a fourth zone which is always present named _local_, which refers to frames origination from or directed towards the ERL itself.
+In part 1 we set up an ACL firewall on the WAN interface. Let's convert this to a roughly equivalent zone-based firewall.
 
-For each pair of zones, four sets of rules are required: two each for IPv4 and IPv6, with one of these sets being for traffic from Zone A to Zone B and the other for traffic from Zone B to Zone A. In my case there are four zones, which translates to six pairs for a total of twenty-four rules. This seems like a lot, but you're likely to end up with several sets which are identical or nearly so, making it possible to speed up configuration through liberal use of the copy command.
+### Define Zones and Allowed Connections
 
-All of my rule sets start with the same two rules. The first is a rule to accept packets for established connections, and the second is a rule to drop and log invalid state packets. Since the majority of traffic on a network is for established connections, placing this rule first avoids the need to process any other rules for most packets and thus reduces CPU load.
+The first step is to determine what are zones are and what connections will be permited for each pair of source and destination zones.
 
-Each ruleset has a default action to perform if no rule in the set matches. In a zone-based firewall the default action must be `drop` or `reject`. The `enable-default-log` option enables logging for traffic hitting the default action.
+In this simple setup we have a _WAN_ zone for the connection to the internet and a _LAN_ zone for our internal LAN. We also need to define one more zone, named _local_, for connections to the router itself (DHCP, DNS, ssh, etc.).
+
+Three zones gives us six pairs of source,destination zones. These are the connections we'll allow between the zones:
+
+- WAN to LAN: Allow only established connections.
+- WAN to local: Allow only established connections.
+- LAN to WAN: Allow all connections.
+- LAN to local: Allow established connections. Also allow ICMP, DHCP, DNS, ssh, and HTTP/HTTPS.
+- local to WAN: Allow all connections.
+- loacl to LAN: Allow all connections.
+
+### Create Firewall Rulesets
+
+Now we need to translate the list of permissible connections into firewall rules.
+
+The article linked to above suggests defining two sets of rules for every source,destination pair, using the naming convention `<source>-<dest>` for IPv4 and `<source>-<dest>-6` for IPv6. I generally follow this suggestion, but it results in quite a few identical rulesets, as you can see from the list above. Therefore I define a few "standard" rulesets for these rather than having redundant rules. Let's write these rulesets first.
+
+The most basic of these is what I call the _allow established, drop invalid_ ruleset. For performance reasons these rules form the basis of all rulesets, but often they are the only rules needed. The following commands in the CLI will create this ruleset for IPv4.
+
+{% highlight console %}
+$ configure
+# edit firewall name allow-est-drop-inv
+# set default-action drop
+# set enable-default-log
+# set rule 1 action accept
+# set rule 1 state established enable
+# set rule 1 state related enable
+# set rule 2 action drop
+# set rule 2 log enable
+# set rule 2 state invalid enable
+# top
+{% endhighlight %}
+
+We need an equivalent rule for IPv6, but here we need to additionally allow ICMP connections.
+
+{% highlight console %}
+# edit firewall ipv6-name allow-est-drop-inv-6
+# set default-action drop
+# set enable-default-log
+# set rule 1 action accept
+# set rule 1 state established enable
+# set rule 1 state related enable
+# set rule 2 action drop
+# set rule 2 log enable
+# set rule 2 state invalid enable
+# set rule 100 action accept
+# set rule 100 protocol ipv6-icmp
+# top
+{% endhighlight %}
+
+The other repeated case we have is the _allow all connections_ ruleset. To save some typing we can start off by making a copy of the `allow-est-drop-invalid` rulesets.
+
+{% highlight console %}
+# edit firewall
+# copy name allow-est-drop-inv to name allow-all
+# edit name allow-all
+# set rule 2000 description "Allow all traffic"
+# set rule 2000 action accept
+# set rule 2000 protocol all
+# top
+{% endhighlight %}
+
+Repeat these steps to create a `allow-all-6` ruleset.
+
+We have only one ruleset left to create now, for connections from the LAN to the router. For IPv4 this looks like:
+
+{% highlight console %}
+# edit firewall
+# copy name allow-est-drop-inv to name lan-local
+# edit name lan-local
+# set rule 100 action accept
+# set rule 100 protocol icmp
+# set rule 200 description "Allow HTTP/HTTPS"
+# set rule 200 action accept
+# set rule 200 destination port 80,443
+# set rule 200 protocol tcp
+# set rule 600 description "Allow DNS"
+# set rule 600 action accept
+# set rule 600 destination port 53
+# set rule 600 protocol tcp_udp
+# set rule 700 description "Allow DHCP"
+# set rule 700 action accept
+# set rule 700 destination port 67,68
+# set rule 700 protocol udp
+# set rule 800 description "Allow SSH"
+# set rule 800 action accept
+# set rule 800 destination port 22
+# set rule 800 protocol tcp
+# top
+{% endhighlight %}
+
+This should be done for IPv6 as well. Keep in mind that `allow-est-drop-inv-6` already includes a rule for ICMP.
+
+### Set Up Zones
+
+Now that we have our rulesets, we need to tell the router about our zones, which interfaces belong to each zone, and which rulesets to apply for traffic originating from other zones. This information goes in the `zone-policy` stanza of the configuration, with one `zone` stanza for each zone of our network.
+
+Let's start by creating a local zone.
+
+{% highlight console %}
+# edit zone-policy zone local
+{% endhighlight %}
+
+Each zone has a default action, which much be either _drop_ or _reject_.
+
+{% highlight console %}
+# set default-action drop
+{% endhighlight %}
+
+Next specify which interface(s) are in this zone. Normally this would be a `set interface <iface>` command, but the local zone is a bit different:
+
+{% highlight console %}
+# set local-zone
+{% endhighlight %}
+
+Now we must create `from <zone>` stanzas to specify which rulesets to apply for traffic from the specified zone to the local zone.
+
+{% highlight console %}
+# set from WAN firewall name allow-est-drop-inv
+# set from WAN firewall ipv6-name allow-est-drop-inv-6
+# set from LAN firewall name lan-local
+# set from LAN firewall ipv6-name lan-local-6
+# top
+{% endhighlight %}
+
+Repeat this procedure for the LAN and WAN zones.
+
+### Delete Existing WAN Rules
+
+If you've been following along you will already have some ACL rules applied to the WAN interface. It's time to delete those.
+
+{% highlight console %}
+# delete interfaces ethernet eth0 firewall
+# delete firewall name WAN_IN
+# delete firewall name WAN_LOCAL
+{% endhighlight %}
+
+### Apply Changes
+
+Now it's time to cross your fingers and commit the load of changes we just made. If you've made any mistakes the CLI will let you know, and you can correct them and commit again. Don't forget to save your changes and back them up once everything is working!
+
+# Conclusion
+
+Setting up a zone-based firewall on the EdgeRouter is a bit of work, but for me the conceptual simplicity and inherent protection against mistakes make it worthwhile.
+
+In part 3 we'll talk about setting up VLANs.
