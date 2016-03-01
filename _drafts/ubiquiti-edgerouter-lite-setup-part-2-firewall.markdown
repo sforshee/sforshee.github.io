@@ -1,10 +1,8 @@
 ---
 layout: post
 title: 'Ubiquiti EdgeRouter Lite Setup Part 2: Firewall'
-date: '2016-03-01T10:48:15.688-06:00'
 author: Seth Forshee
 tags: 
-modified_time: '2016-03-01T10:48:15.688-06:00'
 ---
 
 One of the most important functions of an edge router is to protect the networks behind it from bad actors on the outside. Thus this was the first thing I wanted to tackle after getting the basic setup nailed down.
