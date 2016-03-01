@@ -19,6 +19,8 @@ The typical home network consists of just a single network. I work from home tho
 
 ![Example network topology]({{ site.url }}/assets/article_images/ubiquiti-edgerouter-lite-setup-part-1-the-basics/network-topolgy.png)
 
+In these posts we'll gradually work towards setting up the EdgeRouter Lite for this topology.
+
 # Initial ERL Setup via the Web UI
 
 Consult the [EdgeRouter Lite User Guide](http://dl.ubnt.com/guides/edgemax/EdgeRouter_Lite_UG.pdf) for information on accessing the EdgeOS configuration interface for the first time. Bascially, the steps are: connect a machine to the eth0 port on the ERL, manually configure your machine to have an address in the 192.168.1.x subnet, then point your web browser at 192.168.1.1. This will bring up the configuration interface in your browser.
@@ -31,23 +33,23 @@ Once this is done and the ERL reboots, it is imperative that your next step is t
 
 You can access the CLI either within the web UI or over ssh (my preferred method). The OS on the ERL is called EdgeOS and is based on Vyatta, so if you're familiar with Vyatta the EdgeOS CLI will be familiar. You'll probably want to consult the [EdgeOS User Guide](https://dl.ubnt.com/guides/edgemax/EdgeOS_UG.pdf) to get familiar with the CLI (refer to Appendix A), but I'll mention a few of the basics here.
 
-Once logged into the CLI you're presented with a shell in a Debian-based environment. The first thing to know is that at any time typing ? will bring up context-sensitive help about valid command and syntax. Typing ? a second time will show more detailed help. The shell also includes context-sensitive tab completion.
+Once logged into the CLI you're presented with a shell in a Debian-based environment. The first thing to know is that at any time typing ? will bring up context-sensitive help about valid commands and syntax. Typing ? a second time will show more detailed help. The shell also includes context-sensitive tab completion.
 
 There is a `show` command which can be used to display information about the system. For example, `show interfaces` displays information about the network interfaces in the system.
 
 To make changes to the configuration you must enter configuration mode by entering the `configure` command. Configuration mode has `show` and `set` commands for displaying and modifying configuration variables, respectively, along with an assortment of other commands.
 
-The configuration itself is hierarchical, with sections which may contain settings or subsections. For example there is a `interfaces` section which holds the configurations for network interfaces and a `firewall` section which contains the firewall configuration.
+The configuration itself is hierarchical, with sections which may contain settings or subsections. For example there is a `interfaces` section which holds the configurations for network interfaces and a `firewall` section which contains the firewall rules.
 
 Changes made while in configuration mode are staged until they are committed with the `commit` command, at which point they go into effect, or they can be discarded using the `discard` command. To save the changes to the default configuration use the `save` command, and the `exit` command will return to operational mode. The default configuration is stored in a plain text file at `/config/config.boot`.
 
-# Setting up WAN+LAN Using the CLI
+# Setting Up WAN+LAN Using the CLI
 
 My setup uses eth0 to connect to the internet and eth2 for my LANs. We'll start with a basic setup to provide NAT and a basic firewall on the WAN interface and a single network on the LAN interface.
 
 First, let's set up the firewall to only allow established connections into the network. We'll go into more details about firewall setup in the next post, but for now note thatt we actually create two sets of rules. One is named `WAN_IN` and applies to packets coming in the WAN interface destined for other interfaces, and the other is named `WAN_LOCAL` and applies to packets coming in the WAN interface destined for the router itself.
 
-{% highlight console %}
+{% highlight text %}
 $ configure
 # set firewall all-ping enable
 # set firewall broadcast-ping disable
@@ -85,7 +87,7 @@ Next, set up eth0 as the WAN interface and set up NAT.
 
 {% highlight console %}
 # set interfaces ethernet eth0 description WAN
-# set interfaces ethernet eth0 address DHCP
+# set interfaces ethernet eth0 address dhcp
 # set interfaces ethernet eth0 firewall in name WAN_IN
 # set interfaces ethernet eth0 firewall local name WAN_LOCAL
 # set service nat rule 5010 description "Masquerade for WAN"
@@ -117,7 +119,7 @@ Now commit and save the changes.
 
 # Backing Up and Restoring Your Configuration
 
-Once you have something that's working it's important to backp the configuration file. It's possible to save the configuration to another host using the `save` command, but this is one case where I prefer to use the web UI. Once logged in, click on the _System_ button on the bottom of the screen, find the _Back Up Config_ section, and click the _Download_ button. The configuration can be restored from a backup here as well.
+Once you have something that's working it's important to back up the configuration file. It's possible to save the configuration to another host using the `save` command, but this is one case where I prefer to use the web UI. Once logged in, click on the _System_ button on the bottom of the screen, find the _Back Up Config_ section, and click the _Download_ button. The configuration can be restored from a backup here as well.
 
 The EdgeRouter supports revisioning of the configuration, but I prefer to just store revisions in my own git repository. More information about managing the config file can be found [here](https://help.ubnt.com/hc/en-us/articles/204960084-EdgeMAX-Manage-the-configuration-file).
 
