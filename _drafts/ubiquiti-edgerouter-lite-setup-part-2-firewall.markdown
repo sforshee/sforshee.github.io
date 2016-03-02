@@ -5,44 +5,44 @@ author: Seth Forshee
 tags: 
 ---
 
-One of the most important functions of an edge router is to protect the networks behind it from bad actors on the outside. Thus this was the first thing I wanted to tackle after getting the basic setup nailed down.
+In [part 1]({% post_url 2016-03-01-ubiquiti-edgerouter-lite-setup-part-1-the-basics %}) we covered the basics of setting up the ERL for one WAN interface and one LAN interface with a basic firewall on the WAN interface. But isolating our internal networks against bad actors on the outside is one of the most important functions of a router, so let's explore a more robust firewall configuration.
 
 # ACL vs. Zone Based Firewall
 
-The default firewall setup on the ERL (and the only one supported via the web client) defines rules as sets of ACLs on a per-interface basis. The ERL supports another method of defining rules, using zones to create a zone-based firewall. For a pretty thorough comparison of ACL versus zone-based firewall, I suggest going [here](https://www.nnbfn.net/2011/06/per-interface-vs-zone-based-firewall/). The basic idea behind a zone-based firewall is as follows:
+The default firewall setup on the ERL (and the only one supported via the web client) allows defining firewalls as sets of ACL rules on a per-interface basis. The ERL supports another method of defining rules by dividing your network into zones. For a pretty thorough comparison of ACL versus zone-based firewall, I suggest going [here](https://www.nnbfn.net/2011/06/per-interface-vs-zone-based-firewall/). The basic idea behind a zone-based firewall is as follows:
 
 - You define zones for your network. A common set of zones might be WAN, LAN, and DMZ.
 - You assign one or more interfaces to each zone.
 - You set up rules which match based on source and destination zones.
 
-While an ACL firewall can be easier to set up for simple networks such as mine, a zone-based firewall is conceptually simpler (in my opinion at least) and less susceptible to the sorts of mistakes that can open up your network to the outside. Thus I opted for a zone-based firewall for my network.
+While an ACL firewall can be easier to set up for simple networks such as the one in this example, a zone-based firewall is conceptually simpler (in my opinion at least) and less susceptible to the sorts of mistakes that can open up your network to the outside.
 
-# Setting Up the Zone Based Firewall
+# Setting Up a Zone Based Firewall
 
-The approach I've taken is based on [this article](https://help.ubnt.com/hc/en-us/articles/204952154-EdgeMAX-Zone-Policy-CLI-Example). I recommend reading this before continuing. The link to the example configuration file in that article is broken however, luckily someone was kind enough to post a copy [here](https://gist.github.com/cimnine/9b9dc854a43702f953ea).
+The approach I've taken is based on [this article](https://help.ubnt.com/hc/en-us/articles/204952154-EdgeMAX-Zone-Policy-CLI-Example), and I recommend reading it before proceeding. The link to the example configuration file in that article is broken however, luckily someone was kind enough to post a copy [here](https://gist.github.com/cimnine/9b9dc854a43702f953ea).
 
-In part 1 we set up an ACL firewall on the WAN interface. Let's convert this to a roughly equivalent zone-based firewall.
+Let's convert the firewall we created in [part 1]({% post_url 2016-03-01-ubiquiti-edgerouter-lite-setup-part-1-the-basics %}) to a roughly equivalent zone-based firewall. In the end the result will in fact be much more robust than the ACL firewall.
 
 ### Define Zones and Allowed Connections
 
-The first step is to determine what are zones are and what connections will be permited for each pair of source and destination zones.
+The first step is to determine what our zones are and what connections will be permited for each pair of source and destination zones.
 
 In this simple setup we have a _WAN_ zone for the connection to the internet and a _LAN_ zone for our internal LAN. We also need to define one more zone, named _local_, for connections to the router itself (DHCP, DNS, ssh, etc.).
 
-Three zones gives us six pairs of source,destination zones. These are the connections we'll allow between the zones:
+Three zones gives us six `<source>,<destination>` zone pairs. A reasonable initial set of rules for traffic to allow between the zones is:
 
-- WAN to LAN: Allow only established connections.
-- WAN to local: Allow only established connections.
-- LAN to WAN: Allow all connections.
-- LAN to local: Allow established connections. Also allow ICMP, DHCP, DNS, ssh, and HTTP/HTTPS.
-- local to WAN: Allow all connections.
-- loacl to LAN: Allow all connections.
+- **WAN to LAN**: Allow only traffic for established connections.
+- **WAN to local**: Allow only traffic for established connections.
+- **LAN to WAN**: Drop invalid state packets, allow all other traffic.
+- **LAN to local**: Allow traffic for established connections. Also allow new ICMP, DHCP, DNS, ssh, and HTTP/HTTPS connections.
+- **local to WAN**: Drop invalid state packets, allow all other traffic.
+- **local to LAN**: Drop invalid state packets, allow all other traffic.
 
 ### Create Firewall Rulesets
 
-Now we need to translate the list of permissible connections into firewall rules.
+Now we need to translate the list of permissible traffic into firewall rules.
 
-The article linked to above suggests defining two sets of rules for every source,destination pair, using the naming convention `<source>-<dest>` for IPv4 and `<source>-<dest>-6` for IPv6. I generally follow this suggestion, but it results in quite a few identical rulesets, as you can see from the list above. Therefore I define a few "standard" rulesets for these rather than having redundant rules. Let's write these rulesets first.
+The article linked to above suggests defining two sets of rules for every `<source>,<destination>` pair, using the naming convention `<source>-<destination>` for IPv4 and `<source>-<destination>-6` for IPv6. I generally follow this suggestion, but it results in quite a few identical rulesets, as you can see from the list above. Therefore I define a few "standard" rulesets for these rather than having redundant rules. Let's write these rulesets first.
 
 The most basic of these is what I call the _allow established, drop invalid_ ruleset. For performance reasons these rules form the basis of all rulesets, but often they are the only rules needed. The following commands in the CLI will create this ruleset for IPv4.
 
@@ -130,7 +130,7 @@ Let's start by creating a local zone.
 # edit zone-policy zone local
 {% endhighlight %}
 
-Each zone has a default action, which much be either _drop_ or _reject_.
+Each zone has a default action, which must be either _drop_ or _reject_.
 
 {% highlight console %}
 # set default-action drop
