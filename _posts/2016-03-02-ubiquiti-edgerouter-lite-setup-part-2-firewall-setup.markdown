@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Ubiquiti EdgeRouter Lite Setup Part 2: Firewall'
+title: 'Ubiquiti EdgeRouter Lite Setup Part 2: Firewall Setup'
 author: Seth Forshee
 tags: 
 ---
@@ -9,7 +9,7 @@ In [part 1]({% post_url 2016-03-01-ubiquiti-edgerouter-lite-setup-part-1-the-bas
 
 # ACL vs. Zone Based Firewall
 
-The default firewall setup on the ERL (and the only one supported via the web client) allows defining firewalls as sets of ACL rules on a per-interface basis. The ERL supports another method of defining rules by dividing your network into zones. For a pretty thorough comparison of ACL versus zone-based firewall, I suggest going [here](https://www.nnbfn.net/2011/06/per-interface-vs-zone-based-firewall/). The basic idea behind a zone-based firewall is as follows:
+The default firewall setup on the ERL (and the only one supported via the web client) allows defining firewalls as sets of ACL rules on a per-interface and per-direction basis. But the ERL also supports zone-based firewalls, which work by dividing your network into zones and matching rules based on source and destination zones. For a pretty thorough comparison of ACL versus zone-based firewall, I suggest going [here](https://www.nnbfn.net/2011/06/per-interface-vs-zone-based-firewall/). The basic idea behind a zone-based firewall is as follows:
 
 - You define zones for your network. A common set of zones might be WAN, LAN, and DMZ.
 - You assign one or more interfaces to each zone.

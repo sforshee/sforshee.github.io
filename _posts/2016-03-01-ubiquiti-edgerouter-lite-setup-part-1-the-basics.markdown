@@ -9,6 +9,11 @@ A few months back I picked up an [Ubiquiti EdgeRouter Lite](https://www.ubnt.com
 
 Please note that for the most part I'm writing this from memory, so there may be mistakes. Since my ERL is currently in use I haven't been able to validate the configuration steps I provide. If you see mistakes, have problems with any of the steps, or have suggestions for better ways to do things please let me know.
 
+For reference I'll maintain a collection of links to all my posts about EdgeRouter Lite configuration here, updating it as new posts are added.
+
+- [Part 1: The Basics]({% post_url 2016-03-01-ubiquiti-edgerouter-lite-setup-part-1-the-basics %})
+- [Part 2: Firewall Setup]({% post_url 2016-03-02-ubiquiti-edgerouter-lite-setup-part-2-firewall-setup %})
+
 # About the EdgeRouter Lite
 
 If all you're familiar with is the standard consumer home networking equipment, it may take a bit of reorienting to understand the role of the ERL. In consumer parlance a _router_ is typically a combination of a router (connects networks together), a switch (connects machines within a network), and a wireless access point (allows wireless clients to connect to the network). The ERL serves only the router function, but it does this with better performance, more flexibility, and (hopefully) better reliability than consumer equipment. It also has a decent CLI, which will be used for almost all the configuration examples in these posts.
@@ -151,4 +156,4 @@ $ sudo chown -R <user> /home/<user>
 
 Now you should be able to log out and then log back in using your ssh key.
 
-That's it for part 1. In part 2 we'll go into detail about setting up the firewall.
+That's it for part 1. In [part 2]({% post_url 2016-03-02-ubiquiti-edgerouter-lite-setup-part-2-firewall-setup %}) we'll go into detail about setting up the firewall.
