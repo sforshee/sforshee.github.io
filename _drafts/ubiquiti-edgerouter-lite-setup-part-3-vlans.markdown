@@ -62,6 +62,14 @@ Firewall rules and zone policy also need to be defined for the management zone. 
 
 Once the VLAN configuration has been verified to be working with other networking equipment, much of the old configuration for the LAN is likely no longer needed. It should be safe to delete the IP address for eth2 and the DHCP settings, DNS settings, and zone policy for the old LAN network. Any firewall rulesets that are no longer used can also be deleted. Make sure that you delete only the rules for the eth2 interface itself and not for its VLANs. Also be sure that the firewall rules allow access to the router configuration from at least one of the VLANs, otherwise you may find yourself locked out!
 
+# Guest/IoT VLAN
+
+Though this isn't included in the example network we're setting up, it's definitely worth mentioning.
+
+Setting up isolated wireless networks for guests and/or internet of things (IoT) devices is a really good idea. Guests could be bringing compromised devices into your network, and IoT devices are infamous for their poor security practices. Unless you have a specific reason that the device needs to be on the same network as your other machines (e.g. a wireless printer) it's better to put them on an isolated network.
+
+Using the information above it is strightforward to add one or more additional VLANs for these devices. Set up the vlan similarly to the one above, set up DHCP with an unused range of IPv4 addresses, add a new firewal zone for the network, and configure the firewall so that all trafic to and from the zone is dropped except for WAN traffic. Pro tip: If the default action for your zones is `drop` you don't actually need to explicitly add rules to drop traffic between two zones.
+
 # Conclusion
 
 That's it for our brief overview of setting up VLANs on the ERL. In part 4 we'll talk about deploying IPv6 on the ERL.
