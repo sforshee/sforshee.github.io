@@ -5,9 +5,9 @@ author: Seth Forshee
 tags: 
 ---
 
-Those who have followed along with parts [1]({% post_url 2016-03-01-ubiquiti-edgerouter-lite-setup-part-1-the-basics %}) and 2 of this series should now have an ERL configuration with one WAN and one LAN interface and a zone-based firewall. Let's take another look at our example network layout diagram.
+Those who have followed along with parts [1]({% post_url 2016-03-01-ubiquiti-edgerouter-lite-setup-part-1-the-basics %}) and 2 of this series should now have an ERL configuration with one WAN and one LAN interface and a zone-based firewall. Let's take another look at our example network configuration diagram.
 
-![Example network layout]({{ site.url }}/assets/article_images/ubiquiti-edgerouter-lite-setup-part-1-the-basics/network-topolgy.png)
+![Example network configuration]({{ site.url }}/assets/article_images/ubiquiti-edgerouter-lite-setup-part-1-the-basics/network-topolgy.png)
 
 Rather than the single LAN we have now, this shows separate home and office LANs. It also shows a wireless AP which will supply wireless networks for both LANs.
 

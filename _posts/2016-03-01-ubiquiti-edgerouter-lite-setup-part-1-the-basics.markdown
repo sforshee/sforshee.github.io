@@ -18,11 +18,11 @@ For reference I'll maintain a collection of links to all my posts about EdgeRout
 
 If all you're familiar with is the standard consumer home networking equipment, it may take a bit of reorienting to understand the role of the ERL. In consumer parlance a _router_ is typically a combination of a router (connects networks together), a switch (connects machines within a network), and a wireless access point (allows wireless clients to connect to the network). The ERL serves only the router function, but it does this with better performance, more flexibility, and (hopefully) better reliability than consumer equipment. It also has a decent CLI, which will be used for almost all the configuration examples in these posts.
 
-# Network Topology
+# Network Configuration
 
 The typical home network consists of just a single network. I work from home though, and I keep my office network separated from our home network to protect my work assets from any potential compromise of my home network. Previously this was done by attaching a second NAT router with firewall behind the router that connected my home from the internet. With the ERL (in combination with a managed switch) I can instead use VLANs to separate my networks for something that looks more like this:
 
-![Example network layout]({{ site.url }}/assets/article_images/ubiquiti-edgerouter-lite-setup-part-1-the-basics/network-topolgy.png)
+![Example network configuration]({{ site.url }}/assets/article_images/ubiquiti-edgerouter-lite-setup-part-1-the-basics/network-topolgy.png)
 
 In these posts we'll gradually work towards setting up the EdgeRouter Lite for this setup.
 
