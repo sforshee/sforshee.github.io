@@ -22,9 +22,9 @@ If all you're familiar with is the standard consumer home networking equipment, 
 
 The typical home network consists of just a single network. I work from home though, and I keep my office network separated from our home network to protect my work assets from any potential compromise of my home network. Previously this was done by attaching a second NAT router with firewall behind the router that connected my home from the internet. With the ERL (in combination with a managed switch) I can instead use VLANs to separate my networks for something that looks more like this:
 
-![Example network topology]({{ site.url }}/assets/article_images/ubiquiti-edgerouter-lite-setup-part-1-the-basics/network-topolgy.png)
+![Example network layout]({{ site.url }}/assets/article_images/ubiquiti-edgerouter-lite-setup-part-1-the-basics/network-topolgy.png)
 
-In these posts we'll gradually work towards setting up the EdgeRouter Lite for this topology.
+In these posts we'll gradually work towards setting up the EdgeRouter Lite for this setup.
 
 # Initial ERL Setup via the Web UI
 
