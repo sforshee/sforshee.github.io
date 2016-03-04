@@ -172,4 +172,4 @@ Now it's time to cross your fingers and commit the load of changes we just made.
 
 Setting up a zone-based firewall on the EdgeRouter is a bit of work, but for me the conceptual simplicity and inherent protection against mistakes make it worthwhile.
 
-In part 3 we'll talk about setting up VLANs.
+In [part 3]({% post_url 2016-03-04-ubiquiti-edgerouter-lite-setup-part-3-vlan-setup %}) we'll talk about setting up VLANs.

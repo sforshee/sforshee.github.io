@@ -1,21 +1,21 @@
 ---
 layout: post
-title: 'Ubiquiti EdgeRouter Lite Setup Part 3: VLANs'
+title: 'Ubiquiti EdgeRouter Lite Setup Part 3: VLAN Setup'
 author: Seth Forshee
 tags: 
 ---
 
-Those who have followed along with parts [1]({% post_url 2016-03-01-ubiquiti-edgerouter-lite-setup-part-1-the-basics %}) and 2 of this series should now have an ERL configuration with one WAN and one LAN interface and a zone-based firewall. Let's take another look at our example network configuration diagram.
+Those who have followed along with parts [1]({% post_url 2016-03-01-ubiquiti-edgerouter-lite-setup-part-1-the-basics %}) and [2]({% post_url 2016-03-02-ubiquiti-edgerouter-lite-setup-part-2-firewall-setup %}) of this series should now have an ERL configuration with one WAN and one LAN interface and a zone-based firewall. Let's take another look at our example network configuration diagram.
 
 ![Example network configuration]({{ site.url }}/assets/article_images/ubiquiti-edgerouter-lite-setup-part-1-the-basics/network-topolgy.png)
 
 Rather than the single LAN we have now, this shows separate home and office LANs. It also shows a wireless AP which will supply wireless networks for both LANs.
 
-One way to separate the home and office networks would be to put them on different interfaces of the ERL, e.g. the home LAN on eth1 and the office LAN on eth2. This would work but has a some disadvantages. Reconfiguring the network might involve rewiring, and each network needs its own wireless AP.
+One way to separate the home and office networks would be to put them on different interfaces of the ERL, e.g. the home LAN on eth1 and the office LAN on eth2. This would work but has a some disadvantages - reconfiguring the network might involve rewiring, and each network needs its own wireless AP.
 
-A more flexible option is to use [virtual LANs](https://en.wikipedia.org/wiki/Virtual_LAN), more commonly called VLANs. With VLANs the networking equipment provides a logical separation of networks which can easily be reconfigured in software. A single interconnect can carry traffic for multiple VLANs using [802.1q VLAN tagging](https://en.wikipedia.org/wiki/IEEE_802.1Q), which allows deploying a single AP which serves wireless networks for both LANs or even multiple APs throughout the building all serving multiple wireless networks.
+A more flexible option is to use [virtual LANs](https://en.wikipedia.org/wiki/Virtual_LAN) (VLANs). With VLANs the networking equipment provides a logical separation of networks which can easily be reconfigured in software. A single interconnect can carry traffic for multiple VLANs using [802.1q VLAN tagging](https://en.wikipedia.org/wiki/IEEE_802.1Q), which allows deploying a single AP which serves wireless networks for both LANs or even multiple APs throughout the building all serving multiple wireless networks.
 
-Using VLANs does require that at least some of your other networking equipment that supports VLANs, which is typically more expensive. In a small network a single managed switch is sufficient, and wireless APs need to support defining multiple SSIDs with VLAN tagging.
+Using VLANs does require that at least some of your other networking equipment support VLANs. In a small network a single managed switch is sufficient, and wireless APs need to support defining multiple SSIDs with VLAN tagging.
 
 In this post we'll learn how to set up VLANs on the ERL. A VLAN deployment will also require configuring switches and wireless APs, but exactly how to do this is hardware-specific and thus will not be covered here.
 
@@ -56,7 +56,7 @@ Repeat this procedure for the home and office VLANs.
 
 ### Firewall Rules
 
-Firewall rules and zone policy also need to be defined for the management zone. I won't cover this in detail here; refer to part 2 for guidance.
+Firewall rules and zone policy also need to be defined for the management zone. I won't cover this in detail here; refer to [part 2]({% post_url 2016-03-02-ubiquiti-edgerouter-lite-setup-part-2-firewall-setup %}) for guidance.
 
 ### Deleting the Old Configuration
 
