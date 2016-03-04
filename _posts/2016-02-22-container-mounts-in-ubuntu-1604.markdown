@@ -4,6 +4,7 @@ title: Container Mounts in Ubuntu 16.04
 date: '2016-02-22T15:26:00.000-06:00'
 author: Seth Forshee
 tags: 
+- featured
 modified_time: '2016-02-22T15:50:10.907-06:00'
 blogger_id: tag:blogger.com,1999:blog-8501269611012488187.post-2865962684540086615
 blogger_orig_url: http://blog.forshee.me/2016/02/container-mounts-in-ubuntu-1604.html
