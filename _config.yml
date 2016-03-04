@@ -27,7 +27,7 @@ baseurl: ""
 twitter_handle: '@sethforshee'
 
 #fill in disqus shortname to use disqus
-#disqus: disqus-shortname
+disqus: sforshee
 
 # social icons and sharing options
 social:
