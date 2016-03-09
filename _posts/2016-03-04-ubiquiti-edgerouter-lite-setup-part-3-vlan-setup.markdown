@@ -72,4 +72,4 @@ Using the information above it is strightforward to add one or more additional V
 
 # Conclusion
 
-That's it for our brief overview of setting up VLANs on the ERL. In part 4 we'll talk about deploying IPv6 on the ERL.
+That's it for our brief overview of setting up VLANs on the ERL. In part 4 we'll talk about deploying [IPv6]({% post_url 2016-03-08-ubiquiti-edgerouter-lite-setup-part-4-ipv6-setup %}) on the ERL.
