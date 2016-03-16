@@ -117,4 +117,6 @@ likely to find others who have already solved your problems.
 
 At this point we've covered everything for a reasonably complete network 
 setup. From here we'll start exploring some more specialized topics, 
-starting with setting up an OpenVPN server on the ERL.
+starting with setting up an
+[OpenVPN server]({% post_url 2016-03-16-ubiquiti-edgerouter-lite-setup-part-5-openvpn-setup %})
+on the ERL.

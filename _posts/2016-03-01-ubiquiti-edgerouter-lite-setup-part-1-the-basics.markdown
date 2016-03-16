@@ -15,6 +15,7 @@ For reference I'll maintain a collection of links to all my posts about EdgeRout
 - [Part 2: Firewall Setup]({% post_url 2016-03-02-ubiquiti-edgerouter-lite-setup-part-2-firewall-setup %})
 - [Part 3: VLAN Setup]({% post_url 2016-03-04-ubiquiti-edgerouter-lite-setup-part-3-vlan-setup %})
 - [Part 4: IPv6 Setup]({% post_url 2016-03-08-ubiquiti-edgerouter-lite-setup-part-4-ipv6-setup %})
+- [Part 5: OpenVPN Setup]({% post_url 2016-03-16-ubiquiti-edgerouter-lite-setup-part-5-openvpn-setup %})
 
 # About the EdgeRouter Lite
 
