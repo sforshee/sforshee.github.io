@@ -227,5 +227,6 @@ server on the ERL. OpenVPN is incredibly flexible though, so if your needs
 aren't completely covered by this guide there's a pretty good chance that you
 just need to tweak the configuration.
 
-The next post will wrap up this series by covering various useful odds and ends
+The next post will wrap up this series by covering various useful
+[odds and ends]({% post_url 2016-03-22-ubiquiti-edgerouter-lite-setup-part-6-odds-and-ends %})
 that we haven't touched on yet.
