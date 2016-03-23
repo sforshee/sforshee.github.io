@@ -30,7 +30,7 @@ $ configure
 
 # Static DHCP Mappings
 
-Sometimes it's useful to assign a known IPv4 address to specific machines. This
+Sometimes it's useful to assign known IPv4 addresses to specific machines. This
 example demonstrates how to set this up.
 
 {% highlight console %}
@@ -54,10 +54,10 @@ $ configure
 According to the information available on various forums and blogs, in order to
 get maximum performance when using the ERL in place of the Google Fiber network
 box traffic in and out of the WAN interface must be tagged for VLAN 2 and have
-the VLAN priority set to 3, and hardware offloading should be enabled. I never
-tried using the ERL with any other configuration, but I can confirm that I'm
-seeing [good speeds](http://speedtest.dslreports.com/speedtest/3203290) with
-this configuration.
+the VLAN priority set to 3, and hardware offloading should be enabled. I've
+never tried using the ERL with any other configuration, but I can confirm that
+I'm seeing [good speeds](http://speedtest.dslreports.com/speedtest/3203290)
+with this configuration.
 
 To apply these settings, delete most other settings from the WAN interface
 (besides `duplex auto` and `speed auto`) and do the following:
