@@ -55,4 +55,4 @@ $ sudo dkms install apple-gmux/0.1
 
 Now we're able to use modprobe to load the apple-gmux module just like any other module. If we want to distribute the module for others to use, DKMS even has `mkdeb` and `mkrpm` commands do automatically create a Debian or RPM package.
 
-This all works great for one-off DKMS packages, but it's a little cumbersome for something that will be updated regularly. In [part 2](http://blog.forshee.me/2012/03/introduction-to-creating-dkms-packages_16.html) we'll cover a technique to simplify matters for frequently updated packages.
+This all works great for one-off DKMS packages, but it's a little cumbersome for something that will be updated regularly. In [part 2](http://www.forshee.me/2012/03/introduction-to-creating-dkms-packages_16.html) we'll cover a technique to simplify matters for frequently updated packages.
