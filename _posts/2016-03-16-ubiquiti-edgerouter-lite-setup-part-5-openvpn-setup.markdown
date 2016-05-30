@@ -130,9 +130,14 @@ which sort of disguises the traffic as normal SSL (useful because SSL
 connections are never blocked by network admins). I'll push a route to allow
 communication with clients in the office network.
 
+_Update_: As pointed out in the comments port 443 conflicts with using SSL for 
+the web gui. Your options to solve this are to either use a different port for 
+the web interface (the `serivce gui https-port` setting controls this) or a 
+different port for the VPN.
+
 {% highlight console %}
 $ configure
-# edit interfaces openssl vtun0
+# edit interfaces openvpn vtun0
 # set description OpenVPN
 # set mode server
 # set local-port 443
@@ -140,7 +145,7 @@ $ configure
 # set server subnet 192.168.200.0/24
 # set server topology subnet
 # set server push-route 192.168.103.0/24
-# set tls ca-cert-file /config/auth/ca.crt
+# set tls ca-cert-file /config/auth/cacert.pem
 # set tls cert-file /config/auth/host.pem
 # set tls dh-file /config/auth/dhp.pem
 # set tls key-file /config/auth/host.key
