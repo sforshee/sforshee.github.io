@@ -100,7 +100,7 @@ Next, set up eth0 as the WAN interface and set up NAT.
 # set interfaces ethernet eth0 firewall in name WAN_IN
 # set interfaces ethernet eth0 firewall local name WAN_LOCAL
 # set service nat rule 5010 description "Masquerade for WAN"
-# set service nat rule 5010 outbound-ingerface eth0
+# set service nat rule 5010 outbound-interface eth0
 # set service nat rule 5010 type masquerade
 {% endhighlight %}
 
