@@ -6,8 +6,8 @@ gems:
 
 # Site settings
 title: "Seth Forshee's Blog"
-description: > # this means to ignore newlines until "email:"
-   Ramblings of a kernel engineer
+# description: > # this means to ignore newlines until "email:"
+#    Ramblings of a kernel engineer
 
 email: seth@forshee.me
 #blog logo
