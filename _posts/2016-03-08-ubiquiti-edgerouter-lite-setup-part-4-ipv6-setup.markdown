@@ -65,6 +65,24 @@ them to determine the correct value.
 
 # LAN Setup
 
+_Update_: There is a much simpler way to get router advertisements on your LANs 
+than what I described in my original instructions. Simply do this:
+
+{% highlight console %}
+# edit interfaces ethernet eth2 vif 1
+# set ipv6 address autoconf
+# set ipv6 dup-addr-detect-transmits 1
+{% endhighlight %}
+
+I can't recall now why I didn't do it this way originally. Possibly it's a 
+legacy of having previously used a 6to4 tunnel. Anyway, I'd suggest you try this 
+first, and refer to the original instructions (below) only if you need to 
+customize the router advertisements.
+
+---
+
+**Original Instructions**:
+
 Now each vif must be configured to advertise its assigned IPv6 prefix to
 clients.
 
