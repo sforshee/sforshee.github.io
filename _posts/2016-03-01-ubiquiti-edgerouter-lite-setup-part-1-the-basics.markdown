@@ -110,7 +110,7 @@ Finally, set up eth2 as the LAN interface with DHCP, and listen for DNS queries 
 # set interfaces ethernet eth2 description LAN
 # set interfaces ethernet eth2 address 192.168.1.1/24
 # set service dhcp-server disabled false
-# set service dhcp-server shared-network-name LAN authoritative disable
+# set service dhcp-server shared-network-name LAN authoritative enable
 # set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 default-router 192.168.1.1
 # set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 dns-server 192.168.1.1
 # set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 lease 86400
