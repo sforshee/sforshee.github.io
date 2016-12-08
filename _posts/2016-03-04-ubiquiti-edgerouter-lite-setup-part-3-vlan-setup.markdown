@@ -34,8 +34,8 @@ We'll configure the management LAN as an example. First we need to add the vif t
 {% highlight console %}
 $ configure
 # edit interfaces ethernet eth2
-# set vif 10 description "Management VLAN"
-# set vif 10 address 192.168.101.1/24
+# set vif 1 description "Management VLAN"
+# set vif 1 address 192.168.101.1/24
 # top
 {% endhighlight %}
 
