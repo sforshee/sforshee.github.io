@@ -225,6 +225,36 @@ $ configure
 
 Finally, configure clients to pass the `--tls-auth ta.key 1` option to OpenVPN.
 
+_**Update 2016-12-30:**_
+
+Since writing this post I've employed a few addtional hardening options for 
+OpenVPN:
+
+- Drop root privileges after OpenVPN initialization. This is done by passing the 
+  `--user nobody --group nogroup` options to OpenVPN. Additionally the 
+  `--persist-key --persist-tun` options should be used to avoid the need for 
+  privileges on soft restart.
+- Use AES256 for the cipher and SHA256 for the message digest instead of the 
+  defaults (Blowfish/SHA1). Note that this may impact performance.
+
+Use the following commands to enable these options.
+
+{% highlight console %}  
+$ configure  
+# edit interfaces openvpn vtun0
+# set openvpn-option "--user nodbody"
+# set openvpn-option "--group nogroup"
+# set openvpn-option --persist-key
+# set openvpn-option --persist-tun
+# set encryption aes256
+# set hash sha256
+# commit  
+# save  
+{% endhighlight %}
+
+You will also need to set the cipher and message digest appropriately in your 
+client configuration.
+
 # Conclusion
 
 In this post we've covered one fairly common scenario for setting up an OpenVPN
