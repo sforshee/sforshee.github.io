@@ -242,7 +242,7 @@ Use the following commands to enable these options.
 {% highlight console %}  
 $ configure  
 # edit interfaces openvpn vtun0
-# set openvpn-option "--user nodbody"
+# set openvpn-option "--user nobody"
 # set openvpn-option "--group nogroup"
 # set openvpn-option --persist-key
 # set openvpn-option --persist-tun
