@@ -490,9 +490,11 @@ touch ca/signing-ca/db/signing-ca.db.attr
 openssl req -new -config signing-ca.conf -out ca/signing-ca.csr -keyout ca/signing-ca/private/signing-ca.key
 openssl ca -config root-ca.conf -in ca/signing-ca.csr -out ca/signing-ca.crt -extensions signing_ca_ext
 openssl req -new -config openvpn-server.conf -out certs/vpn.forshee.me.csr -keyout certs/vpn.forshee.me.key
-openssl ca -config signing-ca.conf -in certs/vpn.forshee.me.csr -out certs/vpn.forshee.me.crt -extensions openvpn_server_ext -create_serial
+openssl ca -config signing-ca.conf -in certs/vpn.forshee.me.csr -out certs/vpn.forshee.me.crt -extensions openvpn_server_ext  -policy openvpn_server_pol -create_serial
 openssl req -new -config openvpn-client.conf -out certs/ubuntu-xps13.csr -keyout certs/ubuntu-xps13.key
 openssl ca -config signing-ca.conf -in certs/ubuntu-xps13.csr -out certs/ubuntu-xps13.crt -extensions openvpn_client_ext -policy openvpn_client_pol
+# Generate CRL
+openssl ca -config signing-ca.conf -gencrl -out crl/signing-ca.crl
 
 
 SAF: For many purposes we need a "chained" file with both the root CA and signing CA certifictes. To create this:
