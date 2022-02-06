@@ -1,8 +1,7 @@
 ---
-layout: post
+layout: single
 title: 'Ubiquiti EdgeRouter Lite Setup Part 2: Firewall Setup'
-author: Seth Forshee
-tags: 
+tags:
 ---
 
 In [part 1]({% post_url 2016-03-01-ubiquiti-edgerouter-lite-setup-part-1-the-basics %})

@@ -1,8 +1,7 @@
 ---
-layout: post
+layout: single
 title: 'Ubiquiti EdgeRouter Lite Setup Part 4: IPv6 Setup'
-author: Seth Forshee
-tags: 
+tags:
 ---
 
 At this point we've done

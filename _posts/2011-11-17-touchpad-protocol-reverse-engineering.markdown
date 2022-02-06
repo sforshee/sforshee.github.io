@@ -1,8 +1,7 @@
 ---
-layout: post
+layout: single
 title: Touchpad Protocol Reverse Engineering
 date: '2011-11-17T22:11:00.001-06:00'
-author: Seth Forshee
 tags:
 - Linux
 - qemu

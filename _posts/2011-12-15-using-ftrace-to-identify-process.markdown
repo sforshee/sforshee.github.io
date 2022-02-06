@@ -1,8 +1,7 @@
 ---
-layout: post
+layout: single
 title: Using ftrace to Identify the Process Calling a Kernel Function
 date: '2011-12-15T17:52:00.001-06:00'
-author: Seth Forshee
 tags:
 - Linux
 modified_time: '2011-12-16T10:00:08.048-06:00'

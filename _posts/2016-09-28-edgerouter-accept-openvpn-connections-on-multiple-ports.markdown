@@ -1,8 +1,7 @@
 ---
-layout: post
+layout: single
 title: 'EdgeRouter: Accept OpenVPN Connections on Multiple Ports'
-author: Seth Forshee
-tags: 
+tags:
 ---
 
 Since different networks frequently have different restrictions on what ports

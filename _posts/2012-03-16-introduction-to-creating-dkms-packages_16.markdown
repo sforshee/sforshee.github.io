@@ -1,8 +1,7 @@
 ---
-layout: post
+layout: single
 title: Introduction to Creating DKMS Packages for Ubuntu, Part 2
 date: '2012-03-16T09:02:00.000-05:00'
-author: Seth Forshee
 tags:
 - Linux
 - dkms

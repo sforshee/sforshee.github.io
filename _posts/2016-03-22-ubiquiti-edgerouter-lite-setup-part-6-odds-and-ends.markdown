@@ -1,8 +1,7 @@
 ---
-layout: post
+layout: single
 title: 'Ubiquiti EdgeRouter Lite Setup Part 6: Odds and Ends'
-author: Seth Forshee
-tags: 
+tags:
 ---
 
 In this final post on configuring the ERL we'll cover some miscellaneous items

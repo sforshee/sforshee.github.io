@@ -1,8 +1,7 @@
 ---
-layout: post
+layout: single
 title: 'Ubiquiti EdgeRouter Lite Setup Part 5: OpenVPN Setup'
-author: Seth Forshee
-tags: 
+tags:
 ---
 
 In previous posts we've covered everything required to set up a network with

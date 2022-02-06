@@ -1,8 +1,7 @@
 ---
-layout: post
+layout: single
 title: 'Fixing 256-color Support with tmux in terminator'
-author: Seth Forshee
-tags: 
+tags:
 ---
 
 I use [terminator](http://gnometerminator.blogspot.com/p/introduction.html) for 
