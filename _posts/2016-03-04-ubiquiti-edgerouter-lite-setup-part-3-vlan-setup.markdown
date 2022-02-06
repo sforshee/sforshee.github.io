@@ -4,6 +4,7 @@ title: 'Ubiquiti EdgeRouter Lite Setup Part 3: VLAN Setup'
 tags:
 - edgerouter
 - networking
+redirect_from: "/2016/03/04/ubiquiti-edgerouter-lite-setup-part-3-vlan-setup.html"
 ---
 
 Those who have followed along with parts [1]({% post_url 2016-03-01-ubiquiti-edgerouter-lite-setup-part-1-the-basics %}) and [2]({% post_url 2016-03-02-ubiquiti-edgerouter-lite-setup-part-2-firewall-setup %}) of this series should now have an ERL configuration with one WAN and one LAN interface and a zone-based firewall. Let's take another look at our example network configuration diagram.

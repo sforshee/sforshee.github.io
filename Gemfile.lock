@@ -273,6 +273,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages (~> 223)
   jekyll-feed (~> 0.6)
+  jekyll-redirect-from
   kramdown-parser-gfm
   tzinfo (~> 1.2)
   tzinfo-data

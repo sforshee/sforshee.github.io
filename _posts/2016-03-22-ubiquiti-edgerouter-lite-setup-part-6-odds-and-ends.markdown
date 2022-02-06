@@ -4,6 +4,7 @@ title: 'Ubiquiti EdgeRouter Lite Setup Part 6: Odds and Ends'
 tags:
 - edgerouter
 - networking
+redirect_from: "/2016/03/22/ubiquiti-edgerouter-lite-setup-part-6-odds-and-ends.html"
 ---
 
 In this final post on configuring the ERL we'll cover some miscellaneous items

@@ -4,6 +4,7 @@ title: 'Ubiquiti EdgeRouter Lite Setup Part 4: IPv6 Setup'
 tags:
 - edgerouter
 - networking
+redirect_from: "/2016/03/08/ubiquiti-edgerouter-lite-setup-part-4-ipv6-setup.html"
 ---
 
 At this point we've done

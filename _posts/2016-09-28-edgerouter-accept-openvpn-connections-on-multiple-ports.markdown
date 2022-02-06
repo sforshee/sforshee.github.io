@@ -4,6 +4,7 @@ title: 'EdgeRouter: Accept OpenVPN Connections on Multiple Ports'
 tags:
 - edgerouter
 - networking
+redirect_from: "/2016/09/28/edgerouter-accept-openvpn-connections-on-multiple-ports.html"
 ---
 
 Since different networks frequently have different restrictions on what ports

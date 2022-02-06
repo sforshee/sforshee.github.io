@@ -9,6 +9,7 @@ modified_time: '2012-03-16T09:03:05.330-05:00'
 blogger_id: tag:blogger.com,1999:blog-8501269611012488187.post-2044436290227594305
 blogger_orig_url: http://blog.forshee.me/2012/03/introduction-to-creating-dkms-packages.html
 redirect_from: "/2012/03/introduction-to-creating-dkms-packages.html"
+redirect_from: "/2012/03/16/introduction-to-creating-dkms-packages.html"
 ---
 
 Dynamic Kernel Module Support (DKMS) is a really useful framework that allows kernel modules to be built dynamically for each kernel present on a system. The modules can also be automatically rebuilt any time a new kernel is installed. This is obviously a great tool if you want to distribute a driver that isn't included in the Linux kernel. I've used it a number of times to distribute test versions of drivers that are still under development.

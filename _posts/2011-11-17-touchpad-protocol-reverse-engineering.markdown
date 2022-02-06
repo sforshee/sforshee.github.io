@@ -11,6 +11,7 @@ modified_time: '2011-11-18T01:10:34.238-06:00'
 blogger_id: tag:blogger.com,1999:blog-8501269611012488187.post-4945479338213177026
 blogger_orig_url: http://blog.forshee.me/2011/11/touchpad-protocol-reverse-engineering.html
 redirect_from: "/2011/11/touchpad-protocol-reverse-engineering.html"
+redirect_from: "/2011/11/17/touchpad-protocol-reverse-engineering.html"
 ---
 
 Recently I was working on [adding Linux support](https://lkml.org/lkml/2011/11/7/433) for some undocumented touchpad protocols, and in the process I developed some useful reverse engineering techniques for touchpads. I'm documenting them here in hopes that they may be useful to others, or at least to myself at some point in the future.

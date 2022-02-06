@@ -4,6 +4,7 @@ title: 'Ubiquiti EdgeRouter Lite Setup Part 2: Firewall Setup'
 tags:
 - edgerouter
 - networking
+redirect_from: "/2016/03/02/ubiquiti-edgerouter-lite-setup-part-2-firewall-setup.html"
 ---
 
 In [part 1]({% post_url 2016-03-01-ubiquiti-edgerouter-lite-setup-part-1-the-basics %})

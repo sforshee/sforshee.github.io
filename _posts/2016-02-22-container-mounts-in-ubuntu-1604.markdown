@@ -7,6 +7,7 @@ modified_time: '2016-02-22T15:50:10.907-06:00'
 blogger_id: tag:blogger.com,1999:blog-8501269611012488187.post-2865962684540086615
 blogger_orig_url: http://blog.forshee.me/2016/02/container-mounts-in-ubuntu-1604.html
 redirect_from: "/2016/02/container-mounts-in-ubuntu-1604.html"
+redirect_from: "/2016/02/22/container-mounts-in-ubuntu-1604.html"
 ---
 
 Something I've been working on for a while now is mounting select filesystems from within unprivileged (i.e. user namespace) containers. Though I'm still working on getting this into upstream Linux, support for mounting fuse and ext4 was recently merged as an opt-in feature in the xenial kernel. The instructions below will help you get started if you'd like to give this a try.

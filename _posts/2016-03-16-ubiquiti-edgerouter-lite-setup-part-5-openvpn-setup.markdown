@@ -4,6 +4,7 @@ title: 'Ubiquiti EdgeRouter Lite Setup Part 5: OpenVPN Setup'
 tags:
 - edgerouter
 - networking
+redirect_from: "/2016/03/16/ubiquiti-edgerouter-lite-setup-part-5-openvpn-setup.html"
 ---
 
 In previous posts we've covered everything required to set up a network with
