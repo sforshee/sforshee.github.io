@@ -2,6 +2,8 @@
 layout: single
 title: 'Ubiquiti EdgeRouter Lite Setup Part 1: The Basics'
 tags:
+- edgerouter
+- networking
 ---
 
 A few months back I picked up an [Ubiquiti EdgeRouter Lite](https://www.ubnt.com/edgemax/edgerouter-lite/) as I started the process of upgrading some of the aging network equipment in my home. So far I'm finding this to be a very substantial upgrade to the typical consumer-grade home networking equipment at a reasonable price. Getting this device configured was a bit of work though, so I'm documenting what a learned here - mostly for my reference, but also in case it proves useful to anyone else.

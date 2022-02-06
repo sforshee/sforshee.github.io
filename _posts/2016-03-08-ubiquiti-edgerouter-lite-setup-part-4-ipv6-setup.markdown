@@ -2,6 +2,8 @@
 layout: single
 title: 'Ubiquiti EdgeRouter Lite Setup Part 4: IPv6 Setup'
 tags:
+- edgerouter
+- networking
 ---
 
 At this point we've done

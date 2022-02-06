@@ -2,6 +2,8 @@
 layout: single
 title: 'EdgeRouter: Accept OpenVPN Connections on Multiple Ports'
 tags:
+- edgerouter
+- networking
 ---
 
 Since different networks frequently have different restrictions on what ports

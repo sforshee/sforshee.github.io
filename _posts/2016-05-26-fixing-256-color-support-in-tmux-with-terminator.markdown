@@ -2,6 +2,7 @@
 layout: single
 title: 'Fixing 256-color Support with tmux in terminator'
 tags:
+- Linux
 ---
 
 I use [terminator](http://gnometerminator.blogspot.com/p/introduction.html) for 
