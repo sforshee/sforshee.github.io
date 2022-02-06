@@ -11,7 +11,7 @@ blogger_orig_url: http://blog.forshee.me/2012/03/introduction-to-creating-dkms-p
 redirect_from: "/2012/03/introduction-to-creating-dkms-packages_16.html"
 ---
 
-The DKMS framework makes it easy to create and distribute an out-of-tree kernel module, as demonstrated in [part 1](http://www.forshee.me/2012/03/introduction-to-creating-dkms-packages.html). However, the process is rather manual (read: error prone) for packages that will be updated regularly. This post is going to look at a way to set up the debian packaging components to make updating easier. A basic familiarity with debian packaging is assumed.
+The DKMS framework makes it easy to create and distribute an out-of-tree kernel module, as demonstrated in [part 1]({% post_url 2012-03-16-introduction-to-creating-dkms-packages %}). However, the process is rather manual (read: error prone) for packages that will be updated regularly. This post is going to look at a way to set up the debian packaging components to make updating easier. A basic familiarity with debian packaging is assumed.
 
 As an example, we'll use an updated version of the apple-gmux-dkms source tree from part 1, which can be donwloaded [here](http://kernel.ubuntu.com/~sforshee/dkms-demo/apple-gmux-dkms-0.2.tar.gz). This time it's not necessary to extract it to `/usr/src`; just extract it to wherever you like in your home directory.
 
