@@ -18,7 +18,7 @@ Using VLANs does require that at least some of your other networking equipment s
 
 In this post we'll learn how to set up VLANs on the ERL. A VLAN deployment will also require configuring switches and wireless APs, but exactly how to do this is hardware-specific and thus will not be covered here.
 
-# Adding VLANs
+## Adding VLANs
 
 A VLAN is created by adding a virtual interfaces or _vif_ to one of the physical interfaces. For our network we'll define three VLANs. Each VLAN will need its own pool of addresses to assign to clients. For this example we'll use:
 
@@ -26,7 +26,7 @@ A VLAN is created by adding a virtual interfaces or _vif_ to one of the physical
 - **VLAN 2**: Home network. Subnet: 192.168.102.0/24.
 - **VLAN 3**: Office network. Subnet: 192.168.103.0/24.
 
-### VLAN Configuration
+#### VLAN Configuration
 
 We'll configure the management LAN as an example. First we need to add the vif to eth2:
 
@@ -53,15 +53,15 @@ Next, set up DHCP and DNS for this network.
 
 Repeat this procedure for the home and office VLANs.
 
-### Firewall Rules
+#### Firewall Rules
 
 Firewall rules and zone policy also need to be defined for the management zone. I won't cover this in detail here; refer to [part 2]({% post_url 2016-03-02-ubiquiti-edgerouter-lite-setup-part-2-firewall-setup %}) for guidance.
 
-### Deleting the Old Configuration
+#### Deleting the Old Configuration
 
 Once the VLAN configuration has been verified to be working with other networking equipment, much of the old configuration for the LAN is likely no longer needed. It should be safe to delete the IP address for eth2 and the DHCP settings, DNS settings, and zone policy for the old LAN network. Any firewall rulesets that are no longer used can also be deleted. Make sure that you delete only the rules for the eth2 interface itself and not for its VLANs. Also be sure that the firewall rules allow access to the router configuration from at least one of the VLANs, otherwise you may find yourself locked out!
 
-# Guest/IoT VLAN
+## Guest/IoT VLAN
 
 Though this isn't included in the example network we're setting up, it's definitely worth mentioning.
 
@@ -69,6 +69,6 @@ Setting up isolated wireless networks for guests and/or internet of things (IoT)
 
 Using the information above it is strightforward to add one or more additional VLANs for these devices. Set up the vlan similarly to the one above, set up DHCP with an unused range of IPv4 addresses, add a new firewal zone for the network, and configure the firewall so that all trafic to and from the zone is dropped except for WAN traffic. Pro tip: If the default action for your zones is `drop` you don't actually need to explicitly add rules to drop traffic between two zones.
 
-# Conclusion
+## Conclusion
 
 That's it for our brief overview of setting up VLANs on the ERL. In part 4 we'll talk about deploying [IPv6]({% post_url 2016-03-08-ubiquiti-edgerouter-lite-setup-part-4-ipv6-setup %}) on the ERL.

@@ -9,7 +9,7 @@ that don't warrant a full post on their own. See
 [part 1]({% post_url 2016-03-01-ubiquiti-edgerouter-lite-setup-part-1-the-basics %})
 for a list of all posts in this series.
 
-# Dynamic DNS
+## Dynamic DNS
 
 The ERL can automatically update your IP address with a number of dynamic DNS
 providers. I'm using the following configuration with DNS-O-Matic:
@@ -27,7 +27,7 @@ $ configure
  }
 {% endhighlight %}
 
-# Static DHCP Mappings
+## Static DHCP Mappings
 
 Sometimes it's useful to assign known IPv4 addresses to specific machines. This
 example demonstrates how to set this up.
@@ -39,7 +39,7 @@ $ configure
 # set static-mapping <name> ip-address <ip-address>
 {% endhighlight %}
 
-# Changing the Host Name
+## Changing the Host Name
 
 The default host name for the ERL is `ubnt`, but this can be easily changed.
 
@@ -48,7 +48,7 @@ $ configure
 # set system host-name <name>
 {% endhighlight %}
 
-# Google Fiber
+## Google Fiber
 
 According to the information available on various forums and blogs, in order to
 get maximum performance when using the ERL in place of the Google Fiber network
@@ -77,7 +77,7 @@ $ configure
 You'll also need to apply your IPv6 prefix delegation settings to the virtual
 interface.
 
-# Staying Up to Date
+## Staying Up to Date
 
 It's a good idea to keep your router firmware up to date to ensure that you
 have all the latest security fixes. I haven't found any way to receive emails
@@ -85,7 +85,7 @@ or similar when new firmware is made available, but firmware announcements are
 posted to the
 [EdgeMax Updates Blog](http://community.ubnt.com/t5/EdgeMAX-Updates-Blog/bg-p/Blog_EdgeMAX).
 
-# Conclusion
+## Conclusion
 
 In my opinion Ubiquiti's EdgeRouter Lite is a very nice step up from the
 typical home or small office router for those who want more control over their

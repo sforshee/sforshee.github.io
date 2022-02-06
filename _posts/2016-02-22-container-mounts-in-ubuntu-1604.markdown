@@ -13,11 +13,11 @@ Something I've been working on for a while now is mounting select filesystems fr
 
 But first a word of warning: **this feature is experimental**. As far as I know it should be stable, but there are known security concerns, specifically with mounting ext2/3/4 volumes[^1].  It should only be enabled in trusted environments where potentially malicious users do not have shell access to your system.
 
-# Requirements
+## Requirements
 
 In order to use this feature, you will need a 4.4.0-6.21 or later kernel in Ubuntu xenial. To follow these instructions you will also need to have lxd installed (help for this can be found [here](https://linuxcontainers.org/lxd/getting-started-cli/)).
 
-# Setup
+## Setup
 
 The first thing you need to do is flip the module parameters to enable user namespace mounts for fuse and/or ext4.
 
@@ -41,7 +41,7 @@ Now create a new container using this profile.
 $ lxc launch ubuntu u1 -p default -p nsmount  
 {% endhighlight %}
 
-# Testing it out
+## Testing it out
 
 Let's try fuse first. Launch a shell in your new container:
 

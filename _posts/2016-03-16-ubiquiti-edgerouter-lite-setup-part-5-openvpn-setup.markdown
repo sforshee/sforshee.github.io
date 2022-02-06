@@ -33,7 +33,7 @@ very specific to my needs and level of paranioa. Consult the
 [OpenVPN documentation](https://openvpn.net/index.php/open-source/documentation.html)
 to help you modify this setup for your needs.
 
-# Generating Certificates
+## Generating Certificates
 
 OpenVPN uses public key cryptography in essentially the same way it's used to
 make secure connections to websites. This means we need a public key
@@ -117,7 +117,7 @@ password each time you connect:
 You'll need to copy the `.pem` files to the respective clients to allow them to
 make connections.
 
-# OpenVPN Server Setup
+## OpenVPN Server Setup
 
 Now it's time to set up the OpenVPN server on the ERL. This is done by creating
 a new interface. You'll also need a new IPv4 subnet for the VPN; I use
@@ -150,7 +150,7 @@ $ configure
 # set tls key-file /config/auth/host.key
 {% endhighlight %}
 
-# Firewall Setup
+## Firewall Setup
 
 Now we need to set up a firewall zone for the VPN and write rules for this
 zone. In this setup the VPN is really just an extension of the office LAN, so
@@ -165,7 +165,7 @@ Refer back to
 [part 2]({% post_url 2016-03-02-ubiquiti-edgerouter-lite-setup-part-2-firewall-setup %})
 for help setting up the firewall.
 
-# Final Steps and Testing
+## Final Steps and Testing
 
 The OpenVPN server hands out IP addresses to clients, so there's no need to set
 up DHCP for the VPN subnet. You may or may not want to set up DNS to listen on
@@ -190,7 +190,7 @@ to use the VPN to access the office LAN from the home LAN. Just be sure you've
 set up firewall rules to allow clients on the home LAN to connect to the
 OpenVPN server on the router.
 
-# Hardening
+## Hardening
 
 This section isn't essential, but I do recommend it.
 
@@ -254,7 +254,7 @@ $ configure
 You will also need to set the cipher and message digest appropriately in your 
 client configuration.
 
-# Conclusion
+## Conclusion
 
 In this post we've covered one fairly common scenario for setting up an OpenVPN
 server on the ERL. OpenVPN is incredibly flexible though, so if your needs

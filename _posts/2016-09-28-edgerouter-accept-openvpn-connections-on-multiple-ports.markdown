@@ -20,7 +20,7 @@ for setting this up, _destination NAT_ (_DNAT_) and _port forwarding_. I've
 chosen to use DNAT, simply because I wanted to play around with the NAT 
 functionality.
 
-# Which Ports?
+## Which Ports?
 
 Before starting we need to know which ports we want OpenVPN to listen on. This 
 will vary depending on the situation. I'm going to assume a typical home user 
@@ -34,7 +34,7 @@ allow access from practically any network. In this example I'll assume that
 OpenVPN is listening on TCP port 443 and we want to also forward connections on 
 port 80.
 
-# Setting Up DNAT
+## Setting Up DNAT
 
 The instructions here assume that you already have OpenVPN up and running on the 
 EdgeRouter. Please see
@@ -72,7 +72,7 @@ TCP ports 80 and 443. You might think that the firewall rules need updates to
 allow incoming TCP connections on port 80, but this isn't the case. DNAT happens 
 before the firewall, so a rule is only needed for the translated address.
 
-# Limitations
+## Limitations
 
 There is one significant limitation to this approach - it's not possible to 
 forward TCP connections to a UDP port, or vice versa, since they are different 

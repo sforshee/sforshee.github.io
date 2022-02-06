@@ -17,11 +17,11 @@ For reference I'll maintain a collection of links to all my posts about EdgeRout
 - [Part 5: OpenVPN Setup]({% post_url 2016-03-16-ubiquiti-edgerouter-lite-setup-part-5-openvpn-setup %})
 - [Part 6: Odds and Ends]({% post_url 2016-03-22-ubiquiti-edgerouter-lite-setup-part-6-odds-and-ends %})
 
-# About the EdgeRouter Lite
+## About the EdgeRouter Lite
 
 If all you're familiar with is the standard consumer home networking equipment, it may take a bit of reorienting to understand the role of the ERL. In consumer parlance a _router_ is typically a combination of a router (connects networks together), a switch (connects machines within a network), and a wireless access point (allows wireless clients to connect to the network). The ERL serves only the router function, but it does this with better performance, more flexibility, and (hopefully) better reliability than consumer equipment. It also has a decent CLI, which will be used for almost all the configuration examples in these posts.
 
-# Network Configuration
+## Network Configuration
 
 The typical home network consists of just a single network. I work from home though, and I keep my office network separated from our home network to protect my work assets from any potential compromise of my home network. Previously this was done by attaching a second NAT router with firewall behind the router that connected my home from the internet. With the ERL (in combination with a managed switch) I can instead use VLANs to separate my networks for something that looks more like this:
 
@@ -29,7 +29,7 @@ The typical home network consists of just a single network. I work from home tho
 
 In these posts we'll gradually work towards setting up the EdgeRouter Lite for this setup.
 
-# Initial ERL Setup via the Web UI
+## Initial ERL Setup via the Web UI
 
 Consult the [EdgeRouter Lite User Guide](http://dl.ubnt.com/guides/edgemax/EdgeRouter_Lite_UG.pdf) for information on accessing the EdgeOS configuration interface for the first time. Bascially, the steps are: connect a machine to the eth0 port on the ERL, manually configure your machine to have an address in the 192.168.1.x subnet, then point your web browser at 192.168.1.1. This will bring up the configuration interface in your browser.
 
@@ -37,7 +37,7 @@ While I prefer the CLI for most of my configuration, the ERL's web interface con
 
 Once this is done and the ERL reboots, it is imperative that your next step is to change the default password, or better yet add a new user and delete the default user altogether.
 
-# Using the CLI
+## Using the CLI
 
 You can access the CLI either within the web UI or over ssh (my preferred method). The OS on the ERL is called EdgeOS and is based on Vyatta, so if you're familiar with Vyatta the EdgeOS CLI will be familiar. You'll probably want to consult the [EdgeOS User Guide](https://dl.ubnt.com/guides/edgemax/EdgeOS_UG.pdf) to get familiar with the CLI (refer to Appendix A), but I'll mention a few of the basics here.
 
@@ -51,7 +51,7 @@ The configuration itself is hierarchical, with sections which may contain settin
 
 Changes made while in configuration mode are staged until they are committed with the `commit` command, at which point they go into effect, or they can be discarded using the `discard` command. To save the changes to the default configuration use the `save` command, and the `exit` command will return to operational mode. The default configuration is stored in a plain text file at `/config/config.boot`.
 
-# Setting Up WAN+LAN Using the CLI
+## Setting Up WAN+LAN Using the CLI
 
 My setup uses eth0 to connect to the internet and eth2 for my LANs. We'll start with a basic setup to provide NAT and a basic firewall on the WAN interface and a single network on the LAN interface.
 
@@ -125,13 +125,13 @@ Now commit and save the changes.
 # exit
 {% endhighlight %}
 
-# Backing Up and Restoring Your Configuration
+## Backing Up and Restoring Your Configuration
 
 Once you have something that's working it's important to back up the configuration file. It's possible to save the configuration to another host using the `save` command, but this is one case where I prefer to use the web UI. Once logged in, click on the _System_ button on the bottom of the screen, find the _Back Up Config_ section, and click the _Download_ button. The configuration can be restored from a backup here as well.
 
 The EdgeRouter supports revisioning of the configuration, but I prefer to just store revisions in my own git repository. More information about managing the config file can be found [here](https://help.ubnt.com/hc/en-us/articles/204960084-EdgeMAX-Manage-the-configuration-file).
 
-# Key-Based SSH Login
+## Key-Based SSH Login
 
 It's more convenient and more secure to log into ssh using public key authentication than with password authentication. I'll assume you're already familiar with key-based authentication, if not a quick search should turn up plenty of resources.
 

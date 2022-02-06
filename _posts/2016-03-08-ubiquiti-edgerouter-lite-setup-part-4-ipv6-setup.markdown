@@ -22,7 +22,7 @@ If your ISP doesn't support IPv6 at all a good option is a 6to4 service like
 here, but instructions can be found
 [elsewhere](https://help.ubnt.com/hc/en-us/articles/204976104-EdgeMAX-IPv6-Tunnel).
 
-# DHCPv6 and Prefix Delegation
+## DHCPv6 and Prefix Delegation
 
 [RFC 3633](https://tools.ietf.org/html/rfc3633) defines a mechanism by which
 [DHCPv6](https://en.wikipedia.org/wiki/DHCPv6) can be used to delegate a
@@ -34,7 +34,7 @@ DHCPv6 or
 (SLAAC). With SLAAC the router advertises a prefix to clients, and clients pick
 their own address within that network. This example will use SLAAC.
 
-# WAN Setup
+## WAN Setup
 
 The first step in configuring the ERL is to set up the WAN interface to request
 a prefix via DHCPv6. Our network is divided into multiple LANs, so we'll divide
@@ -62,7 +62,7 @@ $ configure
 The prefix length is determined by your ISP, so you will need to check with
 them to determine the correct value.
 
-# LAN Setup
+## LAN Setup
 
 _Update_: There is a much simpler way to get router advertisements on your LANs 
 than what I described in my original instructions. Simply do this:
@@ -107,7 +107,7 @@ that I can assign to my subnets.
 
 Repeat these steps for the other virtual interfaces on eth2.
 
-# Potential Problems
+## Potential Problems
 
 When I was originally playing with this I found that either the ERL or 
 my ISP or both were a bit finicky when it came to making IPV6 changes on 
@@ -125,7 +125,7 @@ the ERL. Here are a few tips for some scenaios I encountered:
   straightened things out. If all else fails you can always reboot the
   client.
 
-# Conclusion
+## Conclusion
 
 Hopefully you find these instructions helpful, but if your situation 
 turns out to be different from mine there's a lot of information to be 

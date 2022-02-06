@@ -10,7 +10,7 @@ interface with a basic firewall on the WAN interface. But isolating our internal
 networks against bad actors on the outside is one of the most important 
 functions of a router, so let's explore a more robust firewall configuration.
 
-# ACL vs. Zone Based Firewall
+## ACL vs. Zone Based Firewall
 
 The default firewall setup on the ERL (and the only one supported via the web 
 client) allows defining firewalls as sets of ACL rules on a per-interface and 
@@ -31,7 +31,7 @@ one in this example, a zone-based firewall is conceptually simpler (in my
 opinion at least) and less susceptible to the sorts of mistakes that can open up 
 your network to the outside.
 
-# Setting Up a Zone Based Firewall
+## Setting Up a Zone Based Firewall
 
 The approach I've taken is based on
 [this article](https://help.ubnt.com/hc/en-us/articles/204952154-EdgeMAX-Zone-Policy-CLI-Example), 
@@ -45,7 +45,7 @@ Let's convert the firewall we created in
 to a roughly equivalent zone-based firewall. In the end the result will in fact 
 be much more robust than the ACL firewall.
 
-### Define Zones and Allowed Connections
+#### Define Zones and Allowed Connections
 
 The first step is to determine what our zones are and what connections will be 
 permited for each pair of source and destination zones.
@@ -65,7 +65,7 @@ initial set of rules for traffic to allow between the zones is:
 - **local to WAN**: Drop invalid state packets, allow all other traffic.
 - **local to LAN**: Drop invalid state packets, allow all other traffic.
 
-### Create Firewall Rulesets
+#### Create Firewall Rulesets
 
 Now we need to translate the list of permissible traffic into firewall rules.
 
@@ -160,7 +160,7 @@ router. For IPv4 this looks like:
 This should be done for IPv6 as well. Keep in mind that `allow-est-drop-inv-6` 
 already includes a rule for ICMP.
 
-### Set Up Zones
+#### Set Up Zones
 
 Now that we have our rulesets, we need to tell the router about our zones, which 
 interfaces belong to each zone, and which rulesets to apply for traffic 
@@ -199,7 +199,7 @@ traffic from the specified zone to the local zone.
 
 Repeat this procedure for the LAN and WAN zones.
 
-### Delete Existing WAN Rules
+#### Delete Existing WAN Rules
 
 If you've been following along you will already have some ACL rules applied to 
 the WAN interface. It's time to delete those.
@@ -210,14 +210,14 @@ the WAN interface. It's time to delete those.
 # delete firewall name WAN_LOCAL
 {% endhighlight %}
 
-### Apply Changes
+#### Apply Changes
 
 Now it's time to cross your fingers and commit the load of changes we just made. 
 If you've made any mistakes the CLI will let you know, and you can correct them 
 and commit again. Don't forget to save your changes and back them up once 
 everything is working!
 
-# Conclusion
+## Conclusion
 
 Setting up a zone-based firewall on the EdgeRouter is a bit of work, but for me 
 the conceptual simplicity and inherent protection against mistakes make it 
