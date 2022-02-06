@@ -5,7 +5,8 @@ permalink: /about/
 ---
 
 I am a software engineer working primarily on the Linux kernel at 
-[DigitalOcean](https://www.digitalocean.com).
+[DigitalOcean](https://www.digitalocean.com) and the maintainer of 
+[wireless-regdb](https://wireless.wiki.kernel.org/en/developers/regulatory/wireless-regdb).
 
 ## Where to find me
 

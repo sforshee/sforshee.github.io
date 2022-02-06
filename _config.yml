@@ -57,8 +57,8 @@ analytics:
 # Site Author
 author:
   name             : "Seth Forshee"
-  #avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Just a random kernel hacker."
+  avatar           : "/assets/images/bio-photo.jpg"
+  bio              : " "
   #location         : 
   email            :
   links:
