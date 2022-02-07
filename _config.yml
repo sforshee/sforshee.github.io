@@ -237,6 +237,13 @@ compress_html:
 
 # Defaults
 defaults:
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      classes: wide
   # _posts
   - scope:
       path: ""
