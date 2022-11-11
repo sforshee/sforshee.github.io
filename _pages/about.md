@@ -11,6 +11,7 @@ I am a software engineer working primarily on the Linux kernel at
 ## Where to find me
 
 - [Github](https://github.com/sforshee)
+- [Mastodon](https://fosstodon.org/@sforshee)
 - [Twitter](https://www.twitter.com/sethforshee)
 - [LinkedIn](http://www.linkedin.com/in/sforshee)
 - [Email](mailto:seth@forshee.me)
